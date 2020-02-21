@@ -13,9 +13,12 @@ public class Sintactico {
     int columna=0;
     int contador;
     Token tokenactual;
+    //Token tokenexpresion;
+    String expresionregular="";
     List<Token>Listatokensparser;
     int globalresultado=0;
     ArrayList<Error_Tokens> Listaerroressintacticos;
+    ArrayList<Token>ERS = new ArrayList<Token>();
     
     
     //inicia el analizador sintactico
@@ -30,10 +33,10 @@ public class Sintactico {
     public void inicio(){
         if(tokenactual.id_token.equals("TK_{"))
         {
-            System.out.print("entro al inicio y reconocio {");
+            //System.out.print("entro al inicio y reconocio {");
             match("TK_{");
             cuerpo();
-            System.out.print("llego al final");
+            //System.out.print("llego al final");
             match("TK_}");
             
         }
@@ -121,6 +124,12 @@ public class Sintactico {
             match("TK_id");
             difer();
             match("TK_pcoma");
+            //------aca ejecuto la primera lista de tokens en un arbol
+            //ERS.add(expresionregular);
+            //System.out.println(expresionregular);
+            
+            //luego de generar el grafo pedir otra lista en caso venga y limpliar la lista de tokens
+            ERS.clear();
             Expresion();
         }
         else{
@@ -130,31 +139,38 @@ public class Sintactico {
     
     public void ER(){
         if(tokenactual.id_token.equals("TK_punto")){
+            ERS.add(tokenactual);
+            
             match("TK_punto");
             valI();
             ValD();
         }
         else if(tokenactual.id_token.equals("TK_|")){
+            ERS.add(tokenactual);
             match("TK_|");
             valI();
             ValD();
         }
         else if(tokenactual.id_token.equals("TK_*")){
+            ERS.add(tokenactual);
             match("TK_*");
             valI();
             
         }
         else if(tokenactual.id_token.equals("TK_+")){
+            ERS.add(tokenactual);
             match("TK_+");
             valI();
             
         }
         else if(tokenactual.id_token.equals("TK_?")){
+            ERS.add(tokenactual);
             match("TK_?");
             valI();
             
         }
         else{
+            
             //error en expresion
         }
         
@@ -162,14 +178,19 @@ public class Sintactico {
     
     public void valI(){
         if(tokenactual.id_token.equals("TK_num")){
+            ERS.add(tokenactual);
             match("TK_num");
         }
         if(tokenactual.id_token.equals("TK_cadena")){
+            ERS.add(tokenactual);
             match("TK_cadena");
         }
         if(tokenactual.id_token.equals("TK_{")){
+            ERS.add(tokenactual);
             match("TK_{");
+            ERS.add(tokenactual);
             match("TK_id");
+            ERS.add(tokenactual);
             match("TK_}");
         }
         else{
@@ -179,14 +200,19 @@ public class Sintactico {
     
     public void ValD(){
         if(tokenactual.id_token.equals("TK_num")){
+            ERS.add(tokenactual);
             match("TK_num");
         }
         if(tokenactual.id_token.equals("TK_cadena")){
+            ERS.add(tokenactual);
             match("TK_cadena");
         }
         if(tokenactual.id_token.equals("TK_{")){
+            ERS.add(tokenactual);
             match("TK_{");
+            ERS.add(tokenactual);
             match("TK_id");
+            ERS.add(tokenactual);
             match("TK_}");
         }
         else{
@@ -231,6 +257,10 @@ public class Sintactico {
     
     public ArrayList<Error_Tokens> errorsintactico(){
         return Listaerroressintacticos;
+    }
+    
+    public ArrayList<Token> getERS(){
+        return ERS;
     }
     
 }

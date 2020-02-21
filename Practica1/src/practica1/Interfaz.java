@@ -6,7 +6,12 @@
 package practica1;
 
 import java.awt.List;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import sun.swing.MenuItemLayoutHelper;
 import javax.swing.JOptionPane;
 
@@ -123,7 +128,30 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+            File f;
+            JFileChooser j = new JFileChooser();
+            j.showOpenDialog(j);
+            String dir= j.getSelectedFile().getAbsolutePath();
+            String lee="";
+            
+            f = new File(dir);
+            try
+            {
+             FileReader fr = new FileReader(f);
+                BufferedReader br = new BufferedReader(fr);
+                String aux;
+                while((aux = br.readLine())!=null){
+                    lee = lee+aux+"\n";
+                    
+                }
+               jTextArea1.setText(lee); 
+            }
+            
+            catch(IOException e){
+                System.out.printf("El error al abrir archivo fue:" + e);
+            }
+        
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -487,10 +515,7 @@ public class Interfaz extends javax.swing.JFrame {
                 }//fin del case 14
                 
                 
-                
-                
-                    
-            
+                            
             
             }//fin del switch
         }//fin del analizador
