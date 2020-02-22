@@ -5,10 +5,13 @@
         <group>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/Practica1.java</file>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/Interfaz.java</file>
+            <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/MetodoArbol.java</file>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/Token.java</file>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/Error_Tokens.java</file>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/ErrorToken.java</file>
             <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/Sintactico.java</file>
+            <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/NodoArbol.java</file>
+            <file>file:/C:/Users/Wilfred/Documents/NetBeansProjects/Practica1/src/practica1/IgresarNodo.java</file>
         </group>
     </open-files>
 </project-private>

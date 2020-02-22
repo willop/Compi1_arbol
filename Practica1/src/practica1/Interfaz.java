@@ -187,7 +187,8 @@ public class Interfaz extends javax.swing.JFrame {
                 if(analizar[i].compareTo("{")==0)
                 {
                     columnah++;
-                    lista.add(new Token("TK_{",analizar[i],"Llave de apertura", filav,columnah));                   
+                    palabra+=analizar[i];
+                    estado=30;
                     break;
                 }
                 //si son dos puntos
@@ -357,12 +358,34 @@ public class Interfaz extends javax.swing.JFrame {
                         
                     
                 }
+                case 30:
+                    
+                    if(analizar[i].compareTo("}")==0){
+                        i--;
+                        estado=12;
+                        palabra="";
+                    }
+                    else if(analizar[i].compareTo("\n")==0||analizar[i].compareTo(" ")==0){
+                        lista.add(new Token("TK_{",palabra,"corchetes de apertura",filav,columnah));
+                        i--;
+                        palabra="";
+                        estado=0;
+                    }
+                    else{
+                        columnah++;
+                        palabra+=analizar[i];
+                        estado=30;
+                    }
+                    break;
+                    
+                
                 //cualquier cosa dentro de las comillas
                 case 3:{
                     if(analizar[i].compareTo("\"")==0){
                         i--;
                         estado=12;
                     }
+                    
                     else{
                         columnah++;
                         palabra+=analizar[i];
@@ -474,6 +497,14 @@ public class Interfaz extends javax.swing.JFrame {
                         estado=0;
                         break;
                     }
+                    if(analizar[i].compareTo("}")==0){
+                        columnah++;
+                        palabra+=analizar[i];
+                        lista.add(new Token("TK_compacto",palabra,"Cadena de texto comillas dobles",filav,columnah));
+                        palabra="";
+                        estado=0;
+                        break;
+                    }
                     //break;
                 }//fin del case 13
                 
@@ -531,7 +562,7 @@ public class Interfaz extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(rootPane, "No hay errores lexicos");
                 for(int i=0;i<lista.size();i++){
-                //JOptionPane.showInputDialog(lista.get(i).id_token);
+                JOptionPane.showInputDialog(lista.get(i).id_token);
                 }
                 cantidaderrores = parser.parser(lista);
                 erroressintacticos = parser.errorsintactico();

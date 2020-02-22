@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Sintactico {
   
+    //MetodoArbol metodo;
+    IgresarNodo arbol;
     boolean primeravez=true;
     int cantidaddeerroressintacticos=0;
     int fila=0;
@@ -112,9 +114,13 @@ public class Sintactico {
             match("TK_:");
             validacion();
         }
-        if(tokenactual.id_token.equals("TK_apuntado")){
+        else if(tokenactual.id_token.equals("TK_apuntado")){
             match("TK_apuntado");
             ER();
+        }
+        else{
+            //cantidaddeerroressintacticos++; 
+            //Listaerroressintacticos.add(new Error_Tokens(tokenactual.id_token, "Error sintactico, se esperaba un TK_: o TK_apuntador", fila, columna));
         }
         
     }
@@ -125,8 +131,9 @@ public class Sintactico {
             difer();
             match("TK_pcoma");
             //------aca ejecuto la primera lista de tokens en un arbol
-            //ERS.add(expresionregular);
-            //System.out.println(expresionregular);
+            arbol= new IgresarNodo();
+            arbol.IniciarMetodoArbol(ERS);
+           ////arbol.mostrararbol(ERS.get(0).lexema, fila);
             
             //luego de generar el grafo pedir otra lista en caso venga y limpliar la lista de tokens
             ERS.clear();
@@ -139,8 +146,7 @@ public class Sintactico {
     
     public void ER(){
         if(tokenactual.id_token.equals("TK_punto")){
-            ERS.add(tokenactual);
-            
+            ERS.add(tokenactual);            
             match("TK_punto");
             valI();
             ValD();
@@ -185,13 +191,10 @@ public class Sintactico {
             ERS.add(tokenactual);
             match("TK_cadena");
         }
-        if(tokenactual.id_token.equals("TK_{")){
+        if(tokenactual.id_token.equals("TK_compacto")){
             ERS.add(tokenactual);
-            match("TK_{");
-            ERS.add(tokenactual);
-            match("TK_id");
-            ERS.add(tokenactual);
-            match("TK_}");
+            match("TK_compacto");
+            
         }
         else{
             ER();
@@ -207,13 +210,10 @@ public class Sintactico {
             ERS.add(tokenactual);
             match("TK_cadena");
         }
-        if(tokenactual.id_token.equals("TK_{")){
+        if(tokenactual.id_token.equals("TK_compacto")){
             ERS.add(tokenactual);
-            match("TK_{");
-            ERS.add(tokenactual);
-            match("TK_id");
-            ERS.add(tokenactual);
-            match("TK_}");
+            match("TK_compacto");
+            
         }
         else{
             ER();
@@ -262,5 +262,7 @@ public class Sintactico {
     public ArrayList<Token> getERS(){
         return ERS;
     }
+    
+    
     
 }
