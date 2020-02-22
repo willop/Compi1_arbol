@@ -18,18 +18,22 @@ public class IgresarNodo {
     //---------------------------------Metodos -----------------------------
     public void IniciarMetodoArbol(ArrayList<Token> _lista){
         this.lista=_lista;
-        System.out.print("Ingesa a ingresaNodo");
+        //System.out.print("Ingesa a ingresaNodo");
 
-        for(int i=0;i<=lista.size()-1;i++){           
-            System.out.println(lista.get(i).lexema);
-        }
-        System.out.print("salio sin problema");
+        //for(int i=0;i<=lista.size()-1;i++){           
+        //    System.out.println(lista.get(i).lexema);
+        //}
+        
+        //System.out.print("salio sin problema");
         this.contador=0;
         estadoSimbolo("r");
-        
-        //mostrararbol(r, contador);
+        arbol.recorrido2(arbol.raiz.iquierda);
+        //System.out.println("La raiz que se mando fue: "+arbol.raiz);
+        //arbol.mostrararbol(arbol.raiz,0);
         
     }
+    
+
     
     
     //metoo para agregar simbolos .|*+?

@@ -3,11 +3,12 @@ package practica1;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 
 public class Sintactico {
   
-    //MetodoArbol metodo;
+    MetodoArbol metodo;
     IgresarNodo arbol;
     boolean primeravez=true;
     int cantidaddeerroressintacticos=0;
@@ -131,12 +132,18 @@ public class Sintactico {
             difer();
             match("TK_pcoma");
             //------aca ejecuto la primera lista de tokens en un arbol
+            //JOptionPane.showInputDialog("el tamaño de la lista de ERS es: "+ERS.size());
+            if(ERS.size()==0){
+            
+            }
+            else{
             arbol= new IgresarNodo();
             arbol.IniciarMetodoArbol(ERS);
            ////arbol.mostrararbol(ERS.get(0).lexema, fila);
-            
+            //metodo.recorrido();
             //luego de generar el grafo pedir otra lista en caso venga y limpliar la lista de tokens
             ERS.clear();
+            }
             Expresion();
         }
         else{

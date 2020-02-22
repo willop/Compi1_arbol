@@ -561,39 +561,17 @@ public class Interfaz extends javax.swing.JFrame {
         if(listaerror.isEmpty())
         {
             JOptionPane.showMessageDialog(rootPane, "No hay errores lexicos");
-                for(int i=0;i<lista.size();i++){
-                JOptionPane.showInputDialog(lista.get(i).id_token);
-                }
+                
                 cantidaderrores = parser.parser(lista);
                 erroressintacticos = parser.errorsintactico();
                 
-                if(cantidaderrores>0){
-                    JOptionPane.showInputDialog("Se encontraron errores sintacticos en el archivo");
-                    for(int i=0;i<erroressintacticos.size();i++){
-                        JOptionPane.showInputDialog(erroressintacticos.get(i).caracter);
-                    }
-                }
-                
-           //for(int i=0;i<lista.size();i++){
-                //JOptionPane.showInputDialog(lista.get(i).lexema);
-               //if(lista.get(i).tipo.compareTo("Identificador")==0 && lista.get(i+1).tipo.compareTo("apuntador")==0 &&lista.get(i+1).lexema.compareTo("CONJ")!=0){
-               //    i++;
-               //    //JOptionPane
-               //    String expresion="";
-               //    while(lista.get(i).tipo.compareTo(";")==0){
-               //        expresion+=lista.get(i).lexema;
-               //        i++;
-               //    }
-               //    JOptionPane.showInputDialog("el token es:" +expresion);
-               //}
-            //}        
         }
         
         
         else{
             JOptionPane.showInputDialog("Si tiene errores lexicos");
             for(int j=0;j<listaerror.size();j++){
-                JOptionPane.showInputDialog(listaerror.get(j).tokenlexico);
+                //JOptionPane.showInputDialog(listaerror.get(j).tokenlexico);
             }
         }
         

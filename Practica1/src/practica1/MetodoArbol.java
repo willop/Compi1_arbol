@@ -6,7 +6,7 @@ import javax.swing.SpringLayout;
 public class MetodoArbol {
     //-------------------atributo--------------------------
     NodoArbol raiz;
-    
+    int cont=0;
     //-------------------constructor------------------------
     public MetodoArbol(){
         this.raiz=null;
@@ -17,13 +17,13 @@ public class MetodoArbol {
     
     public void ingresarnodo(String _dato,String _direccion){
         //crear el nodo
-        System.out.print("la ruta es: "+_direccion);
+        //System.out.print("la ruta es: "+_direccion);
         NodoArbol nuevonodo= new NodoArbol(_dato);
         //validar si el arbol esta vacio
         if(_direccion.compareTo("r")==0){
             
             raiz=nuevonodo;
-            System.out.print("se crea la raiz:  "+ raiz.dato);
+            //System.out.print("se crea la raiz:  "+ raiz.dato);
         }
         //si el arbol ya tiene uno o mas nodos
         //crear un nodo auxiliar para ir moviendose en el arbol
@@ -35,43 +35,49 @@ public class MetodoArbol {
         for(int i =1;i<ruta.length-1;i++){
            //aca depende de la direccion avanzamos en el arbol
             if(ruta[i]=='i'){
+                
                 //muevo el auxiliar a la izquierda
                 aux= aux.iquierda;
+                //System.out.print(aux.dato);
             } 
             else{
                 aux= aux.derecha;
+                //System.out.print(aux.dato);
             }
             //ya en la posicion, el auxiliar apunta a un nulo y en esa posicion se agrega el dato para que ya no sea nulo
             aux=nuevonodo;
+            System.out.print(aux.dato);
+            
         }
         
         //mostrararbol(raiz, 0);
     }
     
-    
-    
-    
-    //aca recorre la lista
-    public void mostra(){
-        //mostrararbol(raiz, 0);
+        
+    public void recorrido(){
+        recorrido(raiz);
     }
-//metod para imprimir el arbol
     
-    
-    public void mostrararbol(){
-        int cont=0;
-        if(raiz==null){
-            System.out.print("****************arbol vacio***************");
+    public void recorrido(NodoArbol nt){
+        //si la raiz no es nula
+        System.out.println(nt.dato);
+        if(nt.iquierda!=null){
+            recorrido(nt.iquierda);
             
         }
-        else{
-            mostrararbol();
-            for(int i=0;i<cont;i++){
-                System.out.print("    ");
-            }
-            System.out.println(raiz.dato);
-            
+        if(nt.derecha!=null){
+            recorrido(nt.derecha);
+        }
+    }
+    
+    public void recorrido2(NodoArbol arbol){
+        if(arbol !=null){
+            recorrido2(arbol.derecha);
+            System.out.println("Contenido:" +arbol.dato);
+            recorrido2(arbol.iquierda);
         }
         
     }
+    
+    
 }
